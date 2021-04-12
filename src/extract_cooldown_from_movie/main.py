@@ -10,13 +10,13 @@ def main(movie_path: str):
 
     movie_frame_num = cap.get(cv2.CAP_PROP_FRAME_COUNT)
 
-    for frame_per_num in tqdm(range(int(movie_frame_num // 300))):
-        cap.set(cv2.CAP_PROP_POS_FRAMES, frame_per_num * 300)
+    for frame_per_num in tqdm(range(int(movie_frame_num // 100))):
+        cap.set(cv2.CAP_PROP_POS_FRAMES, frame_per_num * 100)
         ret, frame = cap.read()
         
         if ret:
             # cv2.imshow(window_name, frame)
-            cv2.imwrite(f'D:\develop\lol_ml\output\images\{frame_per_num * 300:06d}.png', frame)
+            cv2.imwrite(f'../../output/images/{frame_per_num * 100:06d}.png', frame)
 
             # if cv2.waitKey(delay) & 0xFF == ord('q'):
             #     break
@@ -34,5 +34,5 @@ def main(movie_path: str):
 
 
 if __name__ == '__main__':
-    movie_path = 'D:\lol_replay\\11-4_JP1-281027993_01.webm'
+    movie_path = '../../input/movies/11-7_JP1-291722907_01.webm'
     main(movie_path)
