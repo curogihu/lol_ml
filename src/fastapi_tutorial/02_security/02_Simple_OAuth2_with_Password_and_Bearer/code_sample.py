@@ -88,3 +88,23 @@ async def login(form_data: OAuth2PasswordRequestForm = Depends()):
 @app.get("/users/me")
 async def read_users_me(current_user: User = Depends(get_current_active_user)):
     return current_user
+
+
+"""
+1. Go to http://127.0.0.1:8000/docs
+2. Type johndoe as username and secret as password in /token API
+3. Push "Execute" button and output the following:
+{
+  "access_token": "johndoe",
+  "token_type": "bearer"
+}
+
+
+Changing the subject, I do not know how to properly use api, "/users/me".
+I need to check the way.
+
+Current output is that status code is 401 and json is
+{
+  "detail": "Not authenticated"
+}
+"""
