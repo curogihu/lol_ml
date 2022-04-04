@@ -3,6 +3,7 @@ import os
 import numpy as np
 
 from glob import glob
+from tqdm import tqdm
 from typing import List
 
 
@@ -23,7 +24,7 @@ def extract_images(
     
     current_frame_num = start_frame
 
-    for current_frame in range(start_frame, end_frame + 1, skip_frame):
+    for current_frame in tqdm(range(start_frame, end_frame + 1, skip_frame)):
         cap.set(cv2.CAP_PROP_POS_FRAMES, current_frame_num)
         ret, frame = cap.read()
 
@@ -31,7 +32,7 @@ def extract_images(
             cv2.imwrite(f'{output_directory_path}/{current_frame_num:09d}.png', frame)
             current_frame_num += skip_frame
 
-            print(current_frame_num)
+            # print(current_frame_num)
 
         else:
             return
@@ -125,9 +126,9 @@ def main():
     template_image_path = '../../input/images/digits/1.png'
     template_image_paths = sorted(glob('../../input/images/digits/*.png'))
 
-    # extract_images(input_video_path, output_directory_path, 60000, 90000, 600)
+    extract_images(input_video_path, output_directory_path, 600, 300000, 600)
 
-    recognize_cs_amount_2(input_image_path, template_image_paths)
+    # recognize_cs_amount_2(input_image_path, template_image_paths)
 
 
 if __name__ == '__main__':
